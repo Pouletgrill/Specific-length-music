@@ -24,9 +24,23 @@ namespace Specific_length_music
             string Foldermusic = @"C:\Users\utilisateur\Music\iTunes\iTunes Media\Music\Pink Floyd\Animals\";
             string song2 = Foldermusic + "02 Dogs.m4a";
             string song1 = Foldermusic + "04 Sheep.m4a";
-            //Process.Start("cmd", VLC_Path + " calc"/*" vlc" + song*/);
-
+            /////////////////////////////////////////////////////
+            //Comment créer une playlist VLC
             Process.Start(VLC_Path, " \"" + song1+"\"" + " \"" + song2 + "\"");
+            /////////////////////////////////////////////////////
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string Foldermusic = @"C:\Users\utilisateur\Music\iTunes\iTunes Media\Music\Pink Floyd\Animals\";
+            string song2 = Foldermusic + "02 Dogs.m4a";
+            string song1 = Foldermusic + "04 Sheep.m4a";
+            /////////////////////////////////////////////////////
+            //Comment get la durée d'une chanson
+            TagLib.File file = TagLib.File.Create(song1);
+            var duration = file.Properties.Duration.TotalMilliseconds;
+            MessageBox.Show("duration " + duration);
+            /////////////////////////////////////////////////////
         }
     }
 }

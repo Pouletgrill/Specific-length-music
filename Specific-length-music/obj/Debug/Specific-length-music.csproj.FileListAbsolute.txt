@@ -7,3 +7,6 @@ C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-musi
 C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\obj\Debug\Specific-length-music.csproj.GenerateResource.Cache
 C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\obj\Debug\Specific-length-music.exe
 C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\obj\Debug\Specific-length-music.pdb
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\bin\Debug\policy.2.0.taglib-sharp.dll
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\bin\Debug\taglib-sharp.dll
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\bin\Debug\policy.2.0.taglib-sharp.config
