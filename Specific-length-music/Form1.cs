@@ -10,6 +10,8 @@ todo:
 - Faire une classe avec titre(string) et path(string) et duration en milisecond
 - L'algorythme au complet du créateur de playlist
 - Un FileDialog pour choisir la musique a utiliser 
+    chaque dossier selectionner ou fishier serait ajouter a une liste a chaque 
+    confirmation de dialog (on peut selectionner plusieur dossier l'un après l'autre)
 - Un Sous-menu pour choisir l'emplacement de l'exécutable de VLC
 *//////////////////////////////
 using System;
@@ -27,6 +29,7 @@ namespace Specific_length_music
 {
     public partial class Form1 : Form
     {
+        List<CPlaylist> playlist = new List<CPlaylist>();
         public Form1()
         {
             InitializeComponent();
