@@ -1,4 +1,18 @@
-﻿using System;
+﻿/*/////////////////////////////
+Specific Length Music selector
+Par Xavier Brosseau
+///////////////////////////////
+Description: On entre une periode de temps a combler en musique et l'app essai
+De remplir cette espace pile avec le plus de musique possible et randomiser le tout
+
+///////////////////////////////
+todo:
+- Faire une classe avec titre(string) et path(string) et duration en milisecond
+- L'algorythme au complet du créateur de playlist
+- Un FileDialog pour choisir la musique a utiliser 
+- Un Sous-menu pour choisir l'emplacement de l'exécutable de VLC
+*//////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
