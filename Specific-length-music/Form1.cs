@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,8 +31,9 @@ namespace Specific_length_music
     public partial class Form1 : Form
     {
         const string VLC_Path = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
+        int vital = 182;
         List<CPlaylist> selection = new List<CPlaylist>();
-        List<CPlaylist> playlist = new List<CPlaylist>();
+
         public Form1()
         {
             InitializeComponent();
@@ -39,31 +41,86 @@ namespace Specific_length_music
 
         private void Play(List<CPlaylist> list)
         {
-            string s_playlist="";
-            double totalTime=0;
-            foreach(CPlaylist song in playlist)
+            string s_playlist = "";
+            foreach (CPlaylist song in list)
             {
-                s_playlist += " \"" +song.path + "\"";
-                totalTime += song.duration;
+                s_playlist += " \"" + song.path + "\"";
+            }
+            Process.Start(VLC_Path, s_playlist);
+        }
+
+        private void FilesToList()
+        {
+            if (OFD.ShowDialog() == DialogResult.OK)
+            {
+                String[] l_files = OFD.FileNames;
+                foreach (String path in l_files)
+                {
+                    selection.Add(new CPlaylist(Path.GetFileName(path), path));
+                }
+                selectionToTB_List(selection);
+            }
+        }
+
+        private void selectionToTB_List(List<CPlaylist> list)
+        {
+            string s_playlist = "";
+            foreach (CPlaylist song in list)
+            {
+                s_playlist += TimeSpan.FromMilliseconds(song.duration).ToString(@"hh\:mm\:ss") + "\t";
+                s_playlist += song.name + "\r\n";
+                //s_playlist += " \"" + song.path + "\"";
+                //totalTime += song.duration;
+            }
+            TB_Liste.Text = s_playlist;
+        }
+
+        /// <summary>
+        /// Generate 
+        /// l'algorytme au coeur de l'attribution des musique selon un temps donné
+        /// </summary>
+        private List<CPlaylist> generate(List<CPlaylist> list, double d)
+        {
+            List<CPlaylist> playlist = new List<CPlaylist>();
+
+
+            return playlist;
+        }
+
+        private void BTN_FilesSelector_Click(object sender, EventArgs e)
+        {
+            FilesToList();
+
+            //Play(selection);
+        }
+
+        private void BTN_Refresh_Click(object sender, EventArgs e)
+        {
+            //selectionToTB_List();
+        }
+
+        private void BTN_Generate_Click(object sender, EventArgs e)
+        {
+            //Get le temps voulu
+            double timeSpace = 0; //Milliseconde total
+            timeSpace = (double)NUD_H.Value * 3600000;
+            timeSpace += (double)NUD_M.Value * 60000;
+            timeSpace += (double)NUD_S.Value * 1000;
+
+            double totalTimeDuration = 0;
+            foreach (CPlaylist song in selection)
+            {
+                totalTimeDuration += song.duration;
             }
 
-            Process.Start(VLC_Path, s_playlist);
-            /*TimeSpan durationTotal = TimeSpan.FromMilliseconds(totalTime);
-            MessageBox.Show(durationTotal.ToString());*/
+            if (timeSpace <= 0)
+                MessageBox.Show("La période de temps à combler doit être suppérieur à 0");
+            else if (timeSpace > totalTimeDuration) // si pas assez de musique pour combler le temps
+                MessageBox.Show("Pas assez de musique sélectionn pour comblé la périod voulu");
+            else
+            {
+                generate(selection, timeSpace); //On génère le tout
+            }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string Foldermusic = @"C:\Users\utilisateur\Music\iTunes\iTunes Media\Music\Pink Floyd\Animals\";
-            string song2 = "02 Dogs.m4a";
-            string song1 = "04 Sheep.m4a";
-            //Process.Start(VLC_Path, " \"" + song1+"\"" + " \"" + song2 + "\"");
-            playlist.Add(new CPlaylist(song1, Foldermusic + song1));
-            playlist.Add(new CPlaylist(song2, Foldermusic + song2));
-            playlist.Add(new CPlaylist(song1, Foldermusic + song1));
-            playlist.Add(new CPlaylist(song2, Foldermusic + song2));
-            Play(playlist);
-        }
-
     }
 }

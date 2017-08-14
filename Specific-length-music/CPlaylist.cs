@@ -17,6 +17,7 @@ namespace Specific_length_music
             name = c_name;
             path = c_path;
             duration = GetDurationMillisecond();
+            //totalDuration += duration;
         }
 
         private double GetDurationMillisecond()
