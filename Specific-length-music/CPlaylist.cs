@@ -24,5 +24,6 @@ namespace Specific_length_music
             TagLib.File file = TagLib.File.Create(path);
             return file.Properties.Duration.TotalMilliseconds;
         }
+
     }
 }

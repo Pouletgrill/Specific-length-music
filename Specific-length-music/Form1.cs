@@ -29,35 +29,41 @@ namespace Specific_length_music
 {
     public partial class Form1 : Form
     {
+        const string VLC_Path = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
+        List<CPlaylist> selection = new List<CPlaylist>();
         List<CPlaylist> playlist = new List<CPlaylist>();
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Play(List<CPlaylist> list)
         {
-            string VLC_Path = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
-            string Foldermusic = @"C:\Users\utilisateur\Music\iTunes\iTunes Media\Music\Pink Floyd\Animals\";
-            string song2 = Foldermusic + "02 Dogs.m4a";
-            string song1 = Foldermusic + "04 Sheep.m4a";
-            /////////////////////////////////////////////////////
-            //Comment créer une playlist VLC
-            Process.Start(VLC_Path, " \"" + song1+"\"" + " \"" + song2 + "\"");
-            /////////////////////////////////////////////////////
+            string s_playlist="";
+            double totalTime=0;
+            foreach(CPlaylist song in playlist)
+            {
+                s_playlist += " \"" +song.path + "\"";
+                totalTime += song.duration;
+            }
+
+            Process.Start(VLC_Path, s_playlist);
+            /*TimeSpan durationTotal = TimeSpan.FromMilliseconds(totalTime);
+            MessageBox.Show(durationTotal.ToString());*/
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             string Foldermusic = @"C:\Users\utilisateur\Music\iTunes\iTunes Media\Music\Pink Floyd\Animals\";
-            string song2 = Foldermusic + "02 Dogs.m4a";
-            string song1 = Foldermusic + "04 Sheep.m4a";
-            /////////////////////////////////////////////////////
-            //Comment get la durée d'une chanson
-            TagLib.File file = TagLib.File.Create(song1);
-            var duration = file.Properties.Duration.TotalMilliseconds;
-            MessageBox.Show("duration " + duration);
-            /////////////////////////////////////////////////////
+            string song2 = "02 Dogs.m4a";
+            string song1 = "04 Sheep.m4a";
+            //Process.Start(VLC_Path, " \"" + song1+"\"" + " \"" + song2 + "\"");
+            playlist.Add(new CPlaylist(song1, Foldermusic + song1));
+            playlist.Add(new CPlaylist(song2, Foldermusic + song2));
+            playlist.Add(new CPlaylist(song1, Foldermusic + song1));
+            playlist.Add(new CPlaylist(song2, Foldermusic + song2));
+            Play(playlist);
         }
+
     }
 }
