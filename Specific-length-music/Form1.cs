@@ -79,12 +79,28 @@ namespace Specific_length_music
         /// Generate 
         /// l'algorytme au coeur de l'attribution des musique selon un temps donné
         /// </summary>
+        private List<CPlaylist> shuffleList(List<CPlaylist> list)
+        {
+            //Shuffle
+            int n = list.Count;
+            Random rnd = new Random();
+            while (n > 1)
+            {
+                int k = (rnd.Next(0, n) % n);
+                n--;
+                CPlaylist value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+            return list;
+        }
+
         private List<CPlaylist> generate(List<CPlaylist> list, double d)
         {
+            list = shuffleList(list);
             List<CPlaylist> playlist = new List<CPlaylist>();
 
-
-            return playlist;
+            return list;
         }
 
         private void BTN_FilesSelector_Click(object sender, EventArgs e)
@@ -119,7 +135,8 @@ namespace Specific_length_music
                 MessageBox.Show("Pas assez de musique sélectionn pour comblé la périod voulu");
             else
             {
-                generate(selection, timeSpace); //On génère le tout
+                selectionToTB_List( generate(selection, timeSpace)); //On génère le tout
+
             }
         }
     }
