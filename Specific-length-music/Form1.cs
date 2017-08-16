@@ -95,12 +95,21 @@ namespace Specific_length_music
             return list;
         }
 
-        private List<CPlaylist> generate(List<CPlaylist> list, double d)
+        private List<CPlaylist> generate(List<CPlaylist> list, double duration)
         {
-            list = shuffleList(list);
             List<CPlaylist> playlist = new List<CPlaylist>();
+            list = shuffleList(list);
+            for (int i = 0; i < list.Count(); i++)
+            {
+                if(list[i].duration <= duration)
+                {
+                    playlist.Add(list[i]);
+                    duration -= list[i].duration;
+                }
+            }
 
-            return list;
+
+            return playlist;
         }
 
         private void BTN_FilesSelector_Click(object sender, EventArgs e)
@@ -135,7 +144,7 @@ namespace Specific_length_music
                 MessageBox.Show("Pas assez de musique sélectionn pour comblé la périod voulu");
             else
             {
-                selectionToTB_List( generate(selection, timeSpace)); //On génère le tout
+                selectionToTB_List(generate(selection, timeSpace)); //On génère le tout
 
             }
         }

@@ -38,6 +38,7 @@
             this.NUD_S = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.BTN_Generate = new System.Windows.Forms.Button();
+            this.LB_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_H)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_M)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_S)).BeginInit();
@@ -135,11 +136,21 @@
             this.BTN_Generate.UseVisualStyleBackColor = true;
             this.BTN_Generate.Click += new System.EventHandler(this.BTN_Generate_Click);
             // 
+            // LB_label
+            // 
+            this.LB_label.AutoSize = true;
+            this.LB_label.Location = new System.Drawing.Point(470, 21);
+            this.LB_label.Name = "LB_label";
+            this.LB_label.Size = new System.Drawing.Size(35, 13);
+            this.LB_label.TabIndex = 8;
+            this.LB_label.Text = "label2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 382);
+            this.Controls.Add(this.LB_label);
             this.Controls.Add(this.BTN_Generate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NUD_S);
@@ -169,6 +180,7 @@
         private System.Windows.Forms.NumericUpDown NUD_S;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BTN_Generate;
+        private System.Windows.Forms.Label LB_label;
     }
 }
 
