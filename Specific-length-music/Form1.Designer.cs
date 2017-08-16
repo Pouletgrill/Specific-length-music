@@ -39,9 +39,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BTN_Generate = new System.Windows.Forms.Button();
             this.LB_label = new System.Windows.Forms.Label();
+            this.BTN_Play = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.NUD_iteration = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_H)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_M)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_S)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_iteration)).BeginInit();
             this.SuspendLayout();
             // 
             // BTN_FilesSelector
@@ -83,7 +87,7 @@
             // 
             // NUD_H
             // 
-            this.NUD_H.Location = new System.Drawing.Point(28, 82);
+            this.NUD_H.Location = new System.Drawing.Point(12, 125);
             this.NUD_H.Maximum = new decimal(new int[] {
             23,
             0,
@@ -95,7 +99,7 @@
             // 
             // NUD_M
             // 
-            this.NUD_M.Location = new System.Drawing.Point(73, 82);
+            this.NUD_M.Location = new System.Drawing.Point(57, 125);
             this.NUD_M.Maximum = new decimal(new int[] {
             59,
             0,
@@ -107,7 +111,7 @@
             // 
             // NUD_S
             // 
-            this.NUD_S.Location = new System.Drawing.Point(118, 82);
+            this.NUD_S.Location = new System.Drawing.Point(102, 125);
             this.NUD_S.Maximum = new decimal(new int[] {
             59,
             0,
@@ -120,7 +124,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 66);
+            this.label1.Location = new System.Drawing.Point(22, 109);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 13);
             this.label1.TabIndex = 6;
@@ -128,7 +132,7 @@
             // 
             // BTN_Generate
             // 
-            this.BTN_Generate.Location = new System.Drawing.Point(28, 109);
+            this.BTN_Generate.Location = new System.Drawing.Point(12, 152);
             this.BTN_Generate.Name = "BTN_Generate";
             this.BTN_Generate.Size = new System.Drawing.Size(129, 23);
             this.BTN_Generate.TabIndex = 7;
@@ -145,11 +149,60 @@
             this.LB_label.TabIndex = 8;
             this.LB_label.Text = "label2";
             // 
+            // BTN_Play
+            // 
+            this.BTN_Play.Location = new System.Drawing.Point(34, 181);
+            this.BTN_Play.Name = "BTN_Play";
+            this.BTN_Play.Size = new System.Drawing.Size(75, 23);
+            this.BTN_Play.TabIndex = 9;
+            this.BTN_Play.Text = "Play";
+            this.BTN_Play.UseVisualStyleBackColor = true;
+            this.BTN_Play.Click += new System.EventHandler(this.BTN_Play_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Nombre d\'itération:";
+            // 
+            // NUD_iteration
+            // 
+            this.NUD_iteration.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.NUD_iteration.Location = new System.Drawing.Point(113, 61);
+            this.NUD_iteration.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.NUD_iteration.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUD_iteration.Name = "NUD_iteration";
+            this.NUD_iteration.Size = new System.Drawing.Size(111, 20);
+            this.NUD_iteration.TabIndex = 11;
+            this.NUD_iteration.Value = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 382);
+            this.Controls.Add(this.NUD_iteration);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.BTN_Play);
             this.Controls.Add(this.LB_label);
             this.Controls.Add(this.BTN_Generate);
             this.Controls.Add(this.label1);
@@ -164,6 +217,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NUD_H)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_M)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_S)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_iteration)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,6 +235,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BTN_Generate;
         private System.Windows.Forms.Label LB_label;
+        private System.Windows.Forms.Button BTN_Play;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown NUD_iteration;
     }
 }
 

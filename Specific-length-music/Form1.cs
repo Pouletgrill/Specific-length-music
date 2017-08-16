@@ -31,15 +31,15 @@ namespace Specific_length_music
     public partial class Form1 : Form
     {
         const string VLC_Path = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
-        int vital = 182;
         List<CPlaylist> selection = new List<CPlaylist>();
+        List<CPlaylist> playlist_true = new List<CPlaylist>();
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void Play(List<CPlaylist> list)
+        private void Play(ref List<CPlaylist> list)
         {
             string s_playlist = "";
             foreach (CPlaylist song in list)
@@ -59,26 +59,32 @@ namespace Specific_length_music
                     selection.Add(new CPlaylist(Path.GetFileName(path), path));
                 }
                 selectionToTB_List(selection);
+                playlist_true = selection;
             }
         }
 
-        private void selectionToTB_List(List<CPlaylist> list)
+        private void selectionToTB_List(/*ref*/ List<CPlaylist> list)
         {
             string s_playlist = "";
             foreach (CPlaylist song in list)
             {
                 s_playlist += TimeSpan.FromMilliseconds(song.duration).ToString(@"hh\:mm\:ss") + "\t";
                 s_playlist += song.name + "\r\n";
-                //s_playlist += " \"" + song.path + "\"";
-                //totalTime += song.duration;
+
             }
             TB_Liste.Text = s_playlist;
         }
 
-        /// <summary>
-        /// Generate 
-        /// l'algorytme au coeur de l'attribution des musique selon un temps donné
-        /// </summary>
+        private double GetListDuration(ref List<CPlaylist> list)
+        {
+            double totalTimeDuration = 0;
+            foreach (CPlaylist song in list)
+            {
+                totalTimeDuration += song.duration;
+            }
+            return totalTimeDuration;
+        }
+
         private List<CPlaylist> shuffleList(List<CPlaylist> list)
         {
             //Shuffle
@@ -95,22 +101,42 @@ namespace Specific_length_music
             return list;
         }
 
-        private List<CPlaylist> generate(List<CPlaylist> list, double duration)
+        private List<CPlaylist> generate(List<CPlaylist> list, double duration, int iteration)
         {
-            List<CPlaylist> playlist = new List<CPlaylist>();
-            list = shuffleList(list);
-            for (int i = 0; i < list.Count(); i++)
+            List<CPlaylist> playlist_best = null;
+            double tempsResiduel_min = duration + 1;
+
+            for (int i=0; i<iteration;i++)
             {
-                if(list[i].duration <= duration)
+                List<CPlaylist> tempo_list = new List<CPlaylist>();
+                double tempsResiduel_temp = duration;
+
+                list = shuffleList(list);
+
+                for (int k = 0; k < list.Count(); k++)
                 {
-                    playlist.Add(list[i]);
-                    duration -= list[i].duration;
+                    if(list[k].duration <= tempsResiduel_temp)
+                    {
+                        tempo_list.Add(list[k]);
+                        tempsResiduel_temp -= list[k].duration;
+                    }
+                }
+
+                if(tempsResiduel_temp < tempsResiduel_min)
+                {
+                    playlist_best = tempo_list;
+                    tempsResiduel_min = tempsResiduel_temp;
                 }
             }
 
+            LB_label.Text = "Temps risiduel: " + TimeSpan.FromMilliseconds(tempsResiduel_min).ToString(/*@"hh\:mm\:ss"*/);
 
-            return playlist;
+            return playlist_best;
         }
+
+        ///////////////////////////////////////////////////////////////////
+        ////////////////////////EVENT//////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////
 
         private void BTN_FilesSelector_Click(object sender, EventArgs e)
         {
@@ -144,9 +170,15 @@ namespace Specific_length_music
                 MessageBox.Show("Pas assez de musique sélectionn pour comblé la périod voulu");
             else
             {
-                selectionToTB_List(generate(selection, timeSpace)); //On génère le tout
+                playlist_true = generate(selection, timeSpace, (int)NUD_iteration.Value);//On génère le tout
+                selectionToTB_List(playlist_true); 
 
             }
+        }
+
+        private void BTN_Play_Click(object sender, EventArgs e)
+        {
+            Play(ref playlist_true);
         }
     }
 }
