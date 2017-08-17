@@ -42,6 +42,7 @@
             this.BTN_Play = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.NUD_iteration = new System.Windows.Forms.NumericUpDown();
+            this.CB_Alert = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_H)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_M)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_S)).BeginInit();
@@ -60,7 +61,6 @@
             // 
             // OFD
             // 
-            this.OFD.FileName = "openFileDialog1";
             this.OFD.Multiselect = true;
             // 
             // TB_Liste
@@ -132,7 +132,7 @@
             // 
             // BTN_Generate
             // 
-            this.BTN_Generate.Location = new System.Drawing.Point(12, 152);
+            this.BTN_Generate.Location = new System.Drawing.Point(12, 185);
             this.BTN_Generate.Name = "BTN_Generate";
             this.BTN_Generate.Size = new System.Drawing.Size(129, 23);
             this.BTN_Generate.TabIndex = 7;
@@ -151,7 +151,7 @@
             // 
             // BTN_Play
             // 
-            this.BTN_Play.Location = new System.Drawing.Point(34, 181);
+            this.BTN_Play.Location = new System.Drawing.Point(34, 214);
             this.BTN_Play.Name = "BTN_Play";
             this.BTN_Play.Size = new System.Drawing.Size(75, 23);
             this.BTN_Play.TabIndex = 9;
@@ -195,11 +195,22 @@
             0,
             0});
             // 
+            // CB_Alert
+            // 
+            this.CB_Alert.AutoSize = true;
+            this.CB_Alert.Location = new System.Drawing.Point(147, 126);
+            this.CB_Alert.Name = "CB_Alert";
+            this.CB_Alert.Size = new System.Drawing.Size(47, 17);
+            this.CB_Alert.TabIndex = 12;
+            this.CB_Alert.Text = "Alert";
+            this.CB_Alert.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 382);
+            this.Controls.Add(this.CB_Alert);
             this.Controls.Add(this.NUD_iteration);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.BTN_Play);
@@ -238,6 +249,7 @@
         private System.Windows.Forms.Button BTN_Play;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown NUD_iteration;
+        private System.Windows.Forms.CheckBox CB_Alert;
     }
 }
 

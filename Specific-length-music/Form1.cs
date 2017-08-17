@@ -7,12 +7,10 @@ De remplir cette espace pile avec le plus de musique possible et randomiser le t
 
 ///////////////////////////////
 todo:
-- Faire une classe avec titre(string) et path(string) et duration en milisecond
-- L'algorythme au complet du créateur de playlist
 - Un FileDialog pour choisir la musique a utiliser 
     chaque dossier selectionner ou fishier serait ajouter a une liste a chaque 
-    confirmation de dialog (on peut selectionner plusieur dossier l'un après l'autre)
 - Un Sous-menu pour choisir l'emplacement de l'exécutable de VLC
+-Ajouter le temps total des chansson selectionné
 *//////////////////////////////
 using System;
 using System.Collections.Generic;
@@ -31,12 +29,14 @@ namespace Specific_length_music
     public partial class Form1 : Form
     {
         const string VLC_Path = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
+        string alarm_path = System.IO.Directory.GetCurrentDirectory() + @"\audio\alarm1.mp3";
         List<CPlaylist> selection = new List<CPlaylist>();
         List<CPlaylist> playlist_true = new List<CPlaylist>();
 
         public Form1()
         {
             InitializeComponent();
+            OFD.Filter = "Music Files (*.mp3, *.m4a, *.wma)|*.mp3;*.m4a;*.wma";
         }
 
         private void Play(ref List<CPlaylist> list)
@@ -131,6 +131,11 @@ namespace Specific_length_music
 
             LB_label.Text = "Temps risiduel: " + TimeSpan.FromMilliseconds(tempsResiduel_min).ToString(/*@"hh\:mm\:ss"*/);
 
+            if(CB_Alert.Checked)
+            {
+                playlist_best.Add(new CPlaylist("----ALARM----", alarm_path));
+            }
+
             return playlist_best;
         }
 
@@ -148,6 +153,7 @@ namespace Specific_length_music
         private void BTN_Refresh_Click(object sender, EventArgs e)
         {
             //selectionToTB_List();
+            MessageBox.Show(alarm_path);
         }
 
         private void BTN_Generate_Click(object sender, EventArgs e)
