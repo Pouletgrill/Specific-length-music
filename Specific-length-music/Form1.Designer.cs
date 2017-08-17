@@ -32,17 +32,18 @@
             this.OFD = new System.Windows.Forms.OpenFileDialog();
             this.FBD = new System.Windows.Forms.FolderBrowserDialog();
             this.TB_Liste = new System.Windows.Forms.TextBox();
-            this.BTN_Refresh = new System.Windows.Forms.Button();
             this.NUD_H = new System.Windows.Forms.NumericUpDown();
             this.NUD_M = new System.Windows.Forms.NumericUpDown();
             this.NUD_S = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.BTN_Generate = new System.Windows.Forms.Button();
-            this.LB_label = new System.Windows.Forms.Label();
+            this.LB_TempsRisiduel = new System.Windows.Forms.Label();
             this.BTN_Play = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.NUD_iteration = new System.Windows.Forms.NumericUpDown();
             this.CB_Alert = new System.Windows.Forms.CheckBox();
+            this.LB_TempsTotal = new System.Windows.Forms.Label();
+            this.BTN_FolderSelector = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_H)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_M)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_S)).BeginInit();
@@ -53,9 +54,9 @@
             // 
             this.BTN_FilesSelector.Location = new System.Drawing.Point(12, 12);
             this.BTN_FilesSelector.Name = "BTN_FilesSelector";
-            this.BTN_FilesSelector.Size = new System.Drawing.Size(75, 23);
+            this.BTN_FilesSelector.Size = new System.Drawing.Size(119, 23);
             this.BTN_FilesSelector.TabIndex = 0;
-            this.BTN_FilesSelector.Text = "Parcourir";
+            this.BTN_FilesSelector.Text = "Parcourir Fichiers";
             this.BTN_FilesSelector.UseVisualStyleBackColor = true;
             this.BTN_FilesSelector.Click += new System.EventHandler(this.BTN_FilesSelector_Click);
             // 
@@ -63,27 +64,21 @@
             // 
             this.OFD.Multiselect = true;
             // 
+            // FBD
+            // 
+            this.FBD.ShowNewFolderButton = false;
+            // 
             // TB_Liste
             // 
             this.TB_Liste.AcceptsReturn = true;
             this.TB_Liste.AcceptsTab = true;
-            this.TB_Liste.Location = new System.Drawing.Point(348, 44);
+            this.TB_Liste.Location = new System.Drawing.Point(348, 41);
             this.TB_Liste.Multiline = true;
             this.TB_Liste.Name = "TB_Liste";
             this.TB_Liste.ReadOnly = true;
             this.TB_Liste.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TB_Liste.Size = new System.Drawing.Size(316, 288);
             this.TB_Liste.TabIndex = 1;
-            // 
-            // BTN_Refresh
-            // 
-            this.BTN_Refresh.Location = new System.Drawing.Point(348, 12);
-            this.BTN_Refresh.Name = "BTN_Refresh";
-            this.BTN_Refresh.Size = new System.Drawing.Size(75, 23);
-            this.BTN_Refresh.TabIndex = 2;
-            this.BTN_Refresh.Text = "Refresh";
-            this.BTN_Refresh.UseVisualStyleBackColor = true;
-            this.BTN_Refresh.Click += new System.EventHandler(this.BTN_Refresh_Click);
             // 
             // NUD_H
             // 
@@ -140,14 +135,14 @@
             this.BTN_Generate.UseVisualStyleBackColor = true;
             this.BTN_Generate.Click += new System.EventHandler(this.BTN_Generate_Click);
             // 
-            // LB_label
+            // LB_TempsRisiduel
             // 
-            this.LB_label.AutoSize = true;
-            this.LB_label.Location = new System.Drawing.Point(470, 21);
-            this.LB_label.Name = "LB_label";
-            this.LB_label.Size = new System.Drawing.Size(35, 13);
-            this.LB_label.TabIndex = 8;
-            this.LB_label.Text = "label2";
+            this.LB_TempsRisiduel.AutoSize = true;
+            this.LB_TempsRisiduel.Location = new System.Drawing.Point(345, 332);
+            this.LB_TempsRisiduel.Name = "LB_TempsRisiduel";
+            this.LB_TempsRisiduel.Size = new System.Drawing.Size(39, 13);
+            this.LB_TempsRisiduel.TabIndex = 8;
+            this.LB_TempsRisiduel.Text = "risiduel";
             // 
             // BTN_Play
             // 
@@ -162,7 +157,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 63);
+            this.label2.Location = new System.Drawing.Point(12, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 10;
@@ -175,7 +170,7 @@
             0,
             0,
             0});
-            this.NUD_iteration.Location = new System.Drawing.Point(113, 61);
+            this.NUD_iteration.Location = new System.Drawing.Point(113, 78);
             this.NUD_iteration.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -205,22 +200,42 @@
             this.CB_Alert.Text = "Alert";
             this.CB_Alert.UseVisualStyleBackColor = true;
             // 
+            // LB_TempsTotal
+            // 
+            this.LB_TempsTotal.AutoSize = true;
+            this.LB_TempsTotal.Location = new System.Drawing.Point(345, 345);
+            this.LB_TempsTotal.Name = "LB_TempsTotal";
+            this.LB_TempsTotal.Size = new System.Drawing.Size(27, 13);
+            this.LB_TempsTotal.TabIndex = 13;
+            this.LB_TempsTotal.Text = "total";
+            // 
+            // BTN_FolderSelector
+            // 
+            this.BTN_FolderSelector.Location = new System.Drawing.Point(137, 12);
+            this.BTN_FolderSelector.Name = "BTN_FolderSelector";
+            this.BTN_FolderSelector.Size = new System.Drawing.Size(119, 23);
+            this.BTN_FolderSelector.TabIndex = 14;
+            this.BTN_FolderSelector.Text = "Parcourir dossier";
+            this.BTN_FolderSelector.UseVisualStyleBackColor = true;
+            this.BTN_FolderSelector.Click += new System.EventHandler(this.BTN_FolderSelector_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 382);
+            this.ClientSize = new System.Drawing.Size(702, 428);
+            this.Controls.Add(this.BTN_FolderSelector);
+            this.Controls.Add(this.LB_TempsTotal);
             this.Controls.Add(this.CB_Alert);
             this.Controls.Add(this.NUD_iteration);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.BTN_Play);
-            this.Controls.Add(this.LB_label);
+            this.Controls.Add(this.LB_TempsRisiduel);
             this.Controls.Add(this.BTN_Generate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NUD_S);
             this.Controls.Add(this.NUD_M);
             this.Controls.Add(this.NUD_H);
-            this.Controls.Add(this.BTN_Refresh);
             this.Controls.Add(this.TB_Liste);
             this.Controls.Add(this.BTN_FilesSelector);
             this.Name = "Form1";
@@ -239,17 +254,18 @@
         private System.Windows.Forms.OpenFileDialog OFD;
         private System.Windows.Forms.FolderBrowserDialog FBD;
         private System.Windows.Forms.TextBox TB_Liste;
-        private System.Windows.Forms.Button BTN_Refresh;
         private System.Windows.Forms.NumericUpDown NUD_H;
         private System.Windows.Forms.NumericUpDown NUD_M;
         private System.Windows.Forms.NumericUpDown NUD_S;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BTN_Generate;
-        private System.Windows.Forms.Label LB_label;
+        private System.Windows.Forms.Label LB_TempsRisiduel;
         private System.Windows.Forms.Button BTN_Play;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown NUD_iteration;
         private System.Windows.Forms.CheckBox CB_Alert;
+        private System.Windows.Forms.Label LB_TempsTotal;
+        private System.Windows.Forms.Button BTN_FolderSelector;
     }
 }
 

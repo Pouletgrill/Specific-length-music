@@ -11,6 +11,7 @@ todo:
     chaque dossier selectionner ou fishier serait ajouter a une liste a chaque 
 - Un Sous-menu pour choisir l'emplacement de l'exécutable de VLC
 -Ajouter le temps total des chansson selectionné
+-faire une variable pour les format
 *//////////////////////////////
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,8 @@ namespace Specific_length_music
     public partial class Form1 : Form
     {
         const string VLC_Path = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
-        string alarm_path = System.IO.Directory.GetCurrentDirectory() + @"\audio\alarm1.mp3";
+        const string timeStampValue = @"hh\:mm\:ss\.fff";
+        string alarm_path = System.IO.Directory.GetCurrentDirectory() + @"\audio\alarm10.mp3";
         List<CPlaylist> selection = new List<CPlaylist>();
         List<CPlaylist> playlist_true = new List<CPlaylist>();
 
@@ -37,6 +39,7 @@ namespace Specific_length_music
         {
             InitializeComponent();
             OFD.Filter = "Music Files (*.mp3, *.m4a, *.wma)|*.mp3;*.m4a;*.wma";
+            FBD.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
         }
 
         private void Play(ref List<CPlaylist> list)
@@ -58,9 +61,35 @@ namespace Specific_length_music
                 {
                     selection.Add(new CPlaylist(Path.GetFileName(path), path));
                 }
-                selectionToTB_List(selection);
-                playlist_true = selection;
             }
+        }
+
+        private List<CPlaylist> FolderToList(string sDir)
+        {
+            List<CPlaylist> files = new List<CPlaylist>();
+            try
+            {
+                foreach (string f in Directory.GetFiles(sDir))
+                {
+                    if (Path.GetExtension(f) == ".mp3"
+                      || Path.GetExtension(f) == ".m4a"
+                      || Path.GetExtension(f) == ".wma")
+                    {
+                        selection.Add(new CPlaylist(Path.GetFileName(f), f));
+                    }
+
+                }
+                foreach (string d in Directory.GetDirectories(sDir))
+                {
+                    selection.AddRange(FolderToList(d));
+                }
+            }
+            catch (System.Exception excpt)
+            {
+                MessageBox.Show(excpt.Message);
+            }
+
+            return files;
         }
 
         private void selectionToTB_List(/*ref*/ List<CPlaylist> list)
@@ -106,7 +135,7 @@ namespace Specific_length_music
             List<CPlaylist> playlist_best = null;
             double tempsResiduel_min = duration + 1;
 
-            for (int i=0; i<iteration;i++)
+            for (int i = 0; i < iteration; i++)
             {
                 List<CPlaylist> tempo_list = new List<CPlaylist>();
                 double tempsResiduel_temp = duration;
@@ -115,23 +144,26 @@ namespace Specific_length_music
 
                 for (int k = 0; k < list.Count(); k++)
                 {
-                    if(list[k].duration <= tempsResiduel_temp)
+                    if (list[k].duration <= tempsResiduel_temp)
                     {
                         tempo_list.Add(list[k]);
                         tempsResiduel_temp -= list[k].duration;
                     }
                 }
 
-                if(tempsResiduel_temp < tempsResiduel_min)
+                if (tempsResiduel_temp < tempsResiduel_min)
                 {
                     playlist_best = tempo_list;
                     tempsResiduel_min = tempsResiduel_temp;
                 }
             }
 
-            LB_label.Text = "Temps risiduel: " + TimeSpan.FromMilliseconds(tempsResiduel_min).ToString(/*@"hh\:mm\:ss"*/);
+            //Update du label temps risiduel
+            LB_TempsRisiduel.Text = "Temps risiduel: " + TimeSpan.FromMilliseconds(tempsResiduel_min).ToString(timeStampValue);
+            //update du label temps total
+            LB_TempsTotal.Text = "Temps Total: " + TimeSpan.FromMilliseconds(GetListDuration(ref playlist_best)).ToString(timeStampValue);
 
-            if(CB_Alert.Checked)
+            if (CB_Alert.Checked)
             {
                 playlist_best.Add(new CPlaylist("----ALARM----", alarm_path));
             }
@@ -146,14 +178,20 @@ namespace Specific_length_music
         private void BTN_FilesSelector_Click(object sender, EventArgs e)
         {
             FilesToList();
-
-            //Play(selection);
+            selectionToTB_List(selection);
+            playlist_true = selection;
+            LB_TempsTotal.Text = "Temps Total: " + TimeSpan.FromMilliseconds(GetListDuration(ref selection)).ToString(timeStampValue);
         }
-
-        private void BTN_Refresh_Click(object sender, EventArgs e)
+        private void BTN_FolderSelector_Click(object sender, EventArgs e)
         {
-            //selectionToTB_List();
-            MessageBox.Show(alarm_path);
+            if (FBD.ShowDialog() == DialogResult.OK)
+            {
+                selection.AddRange(FolderToList(FBD.SelectedPath));
+
+                selectionToTB_List(selection);
+                playlist_true = selection;
+                LB_TempsTotal.Text = "Temps Total: " + TimeSpan.FromMilliseconds(GetListDuration(ref selection)).ToString(timeStampValue);
+            }
         }
 
         private void BTN_Generate_Click(object sender, EventArgs e)
@@ -177,7 +215,7 @@ namespace Specific_length_music
             else
             {
                 playlist_true = generate(selection, timeSpace, (int)NUD_iteration.Value);//On génère le tout
-                selectionToTB_List(playlist_true); 
+                selectionToTB_List(playlist_true);
 
             }
         }
@@ -186,5 +224,6 @@ namespace Specific_length_music
         {
             Play(ref playlist_true);
         }
+
     }
 }
