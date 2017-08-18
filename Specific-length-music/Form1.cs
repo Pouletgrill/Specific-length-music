@@ -168,7 +168,7 @@ namespace Specific_length_music
                 playlist_best.Add(new CPlaylist("----ALARM----", alarm_path));
             }
 
-            return playlist_best;
+            return shuffleList(playlist_best);
         }
 
         ///////////////////////////////////////////////////////////////////
