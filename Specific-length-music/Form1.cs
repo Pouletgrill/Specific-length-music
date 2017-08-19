@@ -7,11 +7,9 @@ De remplir cette espace pile avec le plus de musique possible et randomiser le t
 
 ///////////////////////////////
 todo:
-- Un FileDialog pour choisir la musique a utiliser 
-    chaque dossier selectionner ou fishier serait ajouter a une liste a chaque 
 - Un Sous-menu pour choisir l'emplacement de l'exécutable de VLC
--Ajouter le temps total des chansson selectionné
--faire une variable pour les format
+-partir la generation de la selection dans un thread
+
 *//////////////////////////////
 using System;
 using System.Collections.Generic;
@@ -30,7 +28,7 @@ namespace Specific_length_music
     public partial class Form1 : Form
     {
         const string VLC_Path = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
-        const string timeStampValue = @"hh\:mm\:ss\.fff";
+        const string timeStampValue = @"d\ hh\:mm\:ss\.fff";
         string alarm_path = System.IO.Directory.GetCurrentDirectory() + @"\audio\alarm10.mp3";
         List<CPlaylist> selection = new List<CPlaylist>();
         List<CPlaylist> playlist_true = new List<CPlaylist>();
@@ -86,7 +84,7 @@ namespace Specific_length_music
             }
             catch (System.Exception excpt)
             {
-                MessageBox.Show(excpt.Message);
+                //MessageBox.Show(excpt.Message);
             }
 
             return files;

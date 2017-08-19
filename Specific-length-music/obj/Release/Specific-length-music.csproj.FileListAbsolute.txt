@@ -9,3 +9,14 @@ C:\Users\xbrosseau\Documents\Visual Studio 2015\Projects\Specific-length-music\S
 C:\Users\xbrosseau\Documents\Visual Studio 2015\Projects\Specific-length-music\Specific-length-music\obj\Release\Specific-length-music.csproj.GenerateResource.Cache
 C:\Users\xbrosseau\Documents\Visual Studio 2015\Projects\Specific-length-music\Specific-length-music\obj\Release\Specific-length-music.exe
 C:\Users\xbrosseau\Documents\Visual Studio 2015\Projects\Specific-length-music\Specific-length-music\obj\Release\Specific-length-music.pdb
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\bin\Release\Specific-length-music.exe.config
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\bin\Release\Specific-length-music.exe
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\bin\Release\Specific-length-music.pdb
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\bin\Release\policy.2.0.taglib-sharp.dll
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\bin\Release\taglib-sharp.dll
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\bin\Release\policy.2.0.taglib-sharp.config
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\obj\Release\Specific_length_music.Form1.resources
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\obj\Release\Specific_length_music.Properties.Resources.resources
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\obj\Release\Specific-length-music.csproj.GenerateResource.Cache
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\obj\Release\Specific-length-music.exe
+C:\Users\utilisateur\Documents\GitHub\Specific-length-music\Specific-length-music\obj\Release\Specific-length-music.pdb
