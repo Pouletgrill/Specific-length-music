@@ -161,12 +161,14 @@ namespace Specific_length_music
             //update du label temps total
             LB_TempsTotal.Text = "Temps Total: " + TimeSpan.FromMilliseconds(GetListDuration(ref playlist_best)).ToString(timeStampValue);
 
+            playlist_best = shuffleList(playlist_best);
+
             if (CB_Alert.Checked)
             {
                 playlist_best.Add(new CPlaylist("----ALARM----", alarm_path));
             }
 
-            return shuffleList(playlist_best);
+            return playlist_best;
         }
 
         ///////////////////////////////////////////////////////////////////
